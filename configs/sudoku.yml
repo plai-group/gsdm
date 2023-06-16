@@ -1,0 +1,64 @@
+data:
+    dataset: "Sudoku"
+    n_cont: 0
+    num_workers: 4
+    dataset_length: 1000000
+    test_dataset_length: 100
+    type: 6
+    vary_dimensions: false
+    save_sparsity_mask: false
+    fit_intermediate: true
+    obs_props: [0.0,0.2,0.5,0.8]
+    supervise_intermediate: true
+    finite_length: false
+
+model:
+    type: "simple"
+    emb_dim: 128
+    num_transformers: 6
+    var_type: fixedlarge
+    ema_rate: 0.999
+    ema: true
+    predict: x0
+    softmax: true
+    cross_entropy_loss: false
+    var_embedding: true
+    conditional: fixed   # not, fixed
+    resnet: true
+    n_heads: 8
+    attn_dim_reduce: 1
+    impose_sparsity: sparse #dense
+    attn_reg_mu: 0.5
+    attn_reg_lambda: 0.
+    use_shared_var_embeds: false
+    use_shared_var_positions: false
+    max_attn_matrix_size: 40000
+
+diffusion:
+    beta_schedule: linear
+    beta_start: 0.0001
+    beta_end: 0.005
+    num_diffusion_timesteps: 1000
+
+training:
+    batch_size: 32
+    n_epochs: 10000
+    max_epoch_iters: 5000
+    snapshot_freq: 20000
+    validation_freq: 2000
+    attn_reg_iters: 1000
+    mean_latents_loss: false
+
+sampling:
+    sampling_batch_size: 16
+    last_only: true
+    fixed_batch: false
+
+optim:
+    weight_decay: 0.000
+    optimizer: "Adam"
+    lr: 0.00002
+    beta1: 0.9
+    amsgrad: false
+    eps: 0.00000001
+    grad_clip: 1.0

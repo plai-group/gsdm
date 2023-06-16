@@ -1,0 +1,11 @@
+data
+.DS_Store
+experiments
+runs
+wandb
+plots/*.pdf
+plots/*.png
+.vscode
+__pycache__/
+*.csv
+*.tsv

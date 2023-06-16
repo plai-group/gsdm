@@ -1,0 +1,63 @@
+data:
+    dataset: "Boolean"
+    num_workers: 0
+    dataset_length: 1000000
+    test_dataset_length: 100
+    n: 4
+    vary_dimensions: false
+    fit_intermediate: true
+    max_n: 8
+    save_sparsity_mask: false
+    supervise_intermediate: true
+    finite_length: false
+
+model:
+    type: "simple"
+    emb_dim: 64
+    num_transformers: 12
+    var_type: fixedlarge
+    ema_rate: 0.99
+    ema: true
+    predict: x0
+    softmax: true
+    cross_entropy_loss: false
+    var_embedding: true
+    use_shared_var_embeds: false
+    use_shared_var_positions: false
+    conditional: fixed   # not, fixed
+    resnet: true
+    n_heads: 2
+    attn_dim_reduce: 1
+    impose_sparsity: sparse
+    attn_reg_mu: 0.5
+    attn_reg_lambda: 0.
+    max_attn_matrix_size: 40000
+
+diffusion:
+    beta_schedule: linear
+    beta_start: 0.0001
+    beta_end: 0.005
+    num_diffusion_timesteps: 1000
+
+training:
+    batch_size: 4
+    n_epochs: 10000
+    max_epoch_iters: 1000
+    snapshot_freq: 10000
+    validation_freq: 2000
+    mean_latents_loss: false
+
+sampling:
+    sampling_batch_size: 4
+    last_only: true
+    fixed_batch: true
+
+optim:
+    weight_decay: 0.000
+    optimizer: "Adam"
+    lr: 0.00002
+    beta1: 0.9
+    amsgrad: false
+    eps: 0.00000001
+    grad_clip: 1.0
+
